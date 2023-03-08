@@ -11,7 +11,7 @@
 
 <body class="p-3 mb-2 bg-dark text-white" ;>
 
-	<form th:action="@{/empleado/nuevoCliente}"  style="text-align:center;">
+	<form th:action="@{/empleado/nuevoCliente}" style="text-align:center;">
 		<button class="btn btn-outline-light" type="submit"> Registrar cliente</button>
 	</form>
 	<p></p>
@@ -34,6 +34,10 @@
 	<form th:action="@{/empleado/sinReserva}" style="text-align:center;">  
 		<button class="btn btn-outline-light" type="submit">Retirar vehiculo sin reserva</button>
 	</form>
+	<p></p>
+	<form th:action="@{/empleado/nuevoMecanico}" style="text-align:center;">  
+		<button class="btn btn-outline-light" type="submit">Nuevo MECANICO</button>
+	</form>
 	<form th:action="@{/principal/boton}">
 		<div style="text-align:center;">
 			<p></p>
@@ -43,7 +47,7 @@
 			<input class="btn btn-outline-primary" type="submit" value="REGRESAR">
 		</div>
 </body>
-	
+
 </body>
 
 </html>

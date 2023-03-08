@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.modelo.Cliente;
+import com.example.demo.modelo.Mecanico;
 import com.example.demo.modelo.Reserva;
 import com.example.demo.modelo.Vehiculo;
 import com.example.demo.service.IClienteService;
+import com.example.demo.service.IMecanicoService;
 import com.example.demo.service.IReservaService;
 import com.example.demo.service.IVehiculoService;
 
@@ -34,6 +36,9 @@ public class EmpleadoController {
 
 	@Autowired
 	private IReservaService iReservaService;
+
+	@Autowired
+	private IMecanicoService iMecanicoService;
 
 	// Funcionando
 	@GetMapping("/funciones")
@@ -162,7 +167,7 @@ public class EmpleadoController {
 		vehiculo.setDisponibilidad("ND");
 		reservaDato.setEstado("E");
 		this.iVehiculoService.actualizar(vehiculo);
-		 this.iReservaService.modificar(reservaDato);
+		this.iReservaService.modificar(reservaDato);
 		return "vistaEmplReserva";
 	}
 
@@ -171,5 +176,16 @@ public class EmpleadoController {
 	public String sinReserva(Cliente cliente, Vehiculo vehiculo, Reserva reserva, Model modelo) {
 		return "vistaEmplSinReserva";
 
+	}
+
+	@GetMapping("/nuevoMecanico")
+	public String paginaNuevoMecanico(Mecanico mecanico) {
+		return "vistaEmplNuevoMecanico";
+	}
+
+	@PostMapping("/insertarMecanico")
+	public String pruebaInsertarMecanico(Mecanico mecanico) {
+		this.iMecanicoService.ingresar(mecanico);
+		return "vistaEmplConfirmacion";
 	}
 }
