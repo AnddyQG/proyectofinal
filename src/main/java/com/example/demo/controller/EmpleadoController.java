@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.modelo.Cliente;
 import com.example.demo.modelo.Reserva;
+import com.example.demo.modelo.Usuario;
 import com.example.demo.modelo.Vehiculo;
 import com.example.demo.service.IClienteService;
 import com.example.demo.service.IReservaService;
+import com.example.demo.service.IUsuarioService;
 import com.example.demo.service.IVehiculoService;
 
 @Controller
@@ -35,6 +37,9 @@ public class EmpleadoController {
 	@Autowired
 	private IReservaService iReservaService;
 
+	@Autowired
+	private IUsuarioService iUsuarioService;
+	
 	// Funcionando
 	@GetMapping("/funciones")
 	public String paginaNuevaPersona() {
@@ -172,4 +177,12 @@ public class EmpleadoController {
 		return "vistaEmplSinReserva";
 
 	}
+	@GetMapping("/nuevoUsuario")
+	public String paginaNuevoUsuario(Usuario usuario) 
+	{return "vistaUsuario";}
+	@PostMapping("/insertarUsuario")
+	public String pruebaInsertarUsuario(Usuario usuario) 
+	{
+		this.iUsuarioService.crear(usuario);
+	 return "vistaEmplConfirmacion";}
 }
