@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.modelo.Cliente;
 import com.example.demo.modelo.Reserva;
 import com.example.demo.modelo.Vehiculo;
+import com.example.demo.modelo.Vendedor;
 import com.example.demo.service.IClienteService;
 import com.example.demo.service.IReservaService;
 import com.example.demo.service.IVehiculoService;
+import com.example.demo.service.IVendedorService;
 
 @Controller
 @RequestMapping("/empleado")
@@ -34,6 +36,9 @@ public class EmpleadoController {
 
 	@Autowired
 	private IReservaService iReservaService;
+	
+	@Autowired
+	private IVendedorService iVendedorService;
 
 	// Funcionando
 	@GetMapping("/funciones")
@@ -49,7 +54,18 @@ public class EmpleadoController {
 		this.iClienteService.crear(cliente);
 		return "vistaEmplConfirmacion";
 	}
+	
+	@PostMapping("/insertarNuevovendedor")
+	public String pruebaInsertar(Vendedor vendedor) {
+		this.iVendedorService.agregar(vendedor);
+		return "vistaEmplConfirmacion";
+	}
 
+	@GetMapping("/vistaEmpleadoNuevoVendedor")
+	public String paginaNuevoCliente(Vendedor vendedor) {
+		return "vistaEmpleadoNuevoVendedor";
+	}
+	
 	@GetMapping("/nuevoCliente")
 	public String paginaNuevoCliente(Cliente cliente) {
 		return "vistaEmplNuevoCliente";
